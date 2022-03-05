@@ -1,5 +1,6 @@
 public class Ejercicio13 {
    public static String obtenerPalabra(String cad, int num){
+      String palabra = "";
       if (num < 1 || num >= Ejercicio12.contarPalabras(cad)){
          return null;
       }
@@ -11,16 +12,15 @@ public class Ejercicio13 {
             posicion += 1;
          }
          if (posicion == num){
-            String palabra = "";
             int j = i + 1;
             while (cad.charAt(j) != espacio.charAt(0)){
-               palabra = palabra + cad.charAt(j);
+
                j += 1;
             }
             return palabra;
          }
       }
-
+      return palabra; 
    }
 
    public static void main(String[] args) {
