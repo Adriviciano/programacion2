@@ -13,9 +13,9 @@ public class Partidos {
       }
       int locales = 0;
       int visitantes = 0;
-      Scanner entrada = new Scanner(new File(fichero)); 
+      Scanner entrada = new Scanner(new File(fichero), "UTF-8"); 
       while(entrada.hasNextLine()) { 
-         String linea = entrada.nextLine();
+         String linea = entrada.nextLine() + " ";
          String [] partido = new String[4];
          int inicio = 0;
          int fin = 0;
@@ -87,8 +87,16 @@ public class Partidos {
       }
       return vector[maximo];
    }
+   public static void imprimirMatriz(char[][] matriz){
+      for(int i=0; i < matriz.length; i++){
+         for(int j=0;j<matriz[i].length; j++){
+            System.out.print(matriz[i][j] + " ");
+         }
+         System.out.println("");
+      }
+   }
 
-   public static void main(String[] args) {
+   public static void main(String[] args) throws FileNotFoundException{
       String[] nombresEquipos = {"Athletic_Club_de_Bilbao", "CA_Osasuna", 
                            "CD_Alavés", "Club_Atlético_de_Madrid", 
                            "Cádiz_CF", "Elche_CF", "FC_Barcelona", 
@@ -98,8 +106,9 @@ public class Partidos {
                            "Real_Madrid_CF", "Real_Sociedad_de_Fútbol", 
                            "Sevilla_FC", "Valencia_CF", "Villarreal_CF"};
 
-      "liga21-22-jornada25-sin-aplazados.txt", 'r');
-
-      CrearMatrizResultados(nombresEquipos, matriz)
+      imprimirMatriz(crearMatrizResultados(nombresEquipos, "liga21-22-jornada25-sin-aplazados.txt"));
+      //System.out.println(sinDerrotasEnCasa(crearMatrizResultados(nombresEquipos, "liga21-22-jornada25-sin-aplazados.txt")));
+      //System.out.println(obtenerLíder(nombresEquipos, crearMatrizResultados(nombresEquipos, "liga21-22-jornada25-sin-aplazados.txt")));
+      
    }
 }
