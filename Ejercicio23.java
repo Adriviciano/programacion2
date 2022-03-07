@@ -4,6 +4,7 @@ import java.util.Scanner;
 public class Ejercicio23 {
    public static char[][] crearMatrizResultados(String[] vector, String fichero) throws FileNotFoundException{
       
+      
       //crear la matriz y llenarla de '-'
       int n = vector.length;
       char[][] matriz = new char[n][n];
@@ -17,11 +18,12 @@ public class Ejercicio23 {
       int locales = 0;
       int visitantes = 0;
 
+      String [] partido = new String[4];
+
       //lectura del fichero
-      Scanner entrada = new Scanner(new File(fichero)); 
+      Scanner entrada = new Scanner(new File(fichero), "UTF-8"); 
       while(entrada.hasNextLine()) { 
          String linea = entrada.nextLine() + " ";
-         String [] partido = new String[4];
          int inicio = 0;
          int fin = 0;
 
@@ -34,6 +36,8 @@ public class Ejercicio23 {
             inicio = fin + 1;
             fin = inicio;
          }
+
+         //bucle para buscar el local y el visitante
          for (int x = 0; x < vector.length; x++){
             if(vector[x] == partido[0]){
                locales = x;
@@ -42,18 +46,33 @@ public class Ejercicio23 {
                visitantes = x;
             }
          }
+
+         System.out.println(partido[0] + " vs " + partido[2]);
+
+
          if (Integer.parseInt(partido[1]) > Integer.parseInt(partido[3])){
             matriz[locales][visitantes] = '1';
+            System.out.println("1");
          }
          else if(Integer.parseInt(partido[1]) < Integer.parseInt(partido[3])){
             matriz[locales][visitantes] = '2';
+            System.out.println("2");
          }
          else{
             matriz[locales][visitantes] = 'X';
+            System.out.println("X");
          }
       } 
       entrada.close();
       return matriz;
+   }
+   public static void imprimirMatriz(char[][] matriz){
+      for(int i=0; i < matriz.length; i++){
+         for(int j=0;j<matriz[i].length; j++){
+            System.out.print(matriz[i][j] + " ");
+         }
+         System.out.println("");
+      }
    }
 
    public static void main(String[] args) throws FileNotFoundException {
@@ -66,6 +85,6 @@ public class Ejercicio23 {
       "Real_Madrid_CF", "Real_Sociedad_de_Fútbol", 
       "Sevilla_FC", "Valencia_CF", "Villarreal_CF"};
 
-      System.out.println(crearMatrizResultados(nombresEquipos, "liga21-22-jornada25-sin-aplazados.txt"));
+      imprimirMatriz(crearMatrizResultados(nombresEquipos, "liga21-22-jornada25-sin-aplazados.txt"));
    }
 }
