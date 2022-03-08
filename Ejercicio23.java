@@ -39,28 +39,23 @@ public class Ejercicio23 {
 
          //bucle para buscar el local y el visitante
          for (int x = 0; x < vector.length; x++){
-            if(vector[x] == partido[0]){
+            if(vector[x].equals(partido[0])){
                locales = x;
             }
-            else if(vector[x] == partido[2]){
+            else if(vector[x].equals(partido[2])){
+
                visitantes = x;
             }
          }
 
-         System.out.println(partido[0] + " vs " + partido[2]);
-
-
          if (Integer.parseInt(partido[1]) > Integer.parseInt(partido[3])){
             matriz[locales][visitantes] = '1';
-            System.out.println("1");
          }
          else if(Integer.parseInt(partido[1]) < Integer.parseInt(partido[3])){
             matriz[locales][visitantes] = '2';
-            System.out.println("2");
          }
          else{
             matriz[locales][visitantes] = 'X';
-            System.out.println("X");
          }
       } 
       entrada.close();

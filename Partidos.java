@@ -11,15 +11,20 @@ public class Partidos {
             matriz[i][j] = '-';
          }
       }
+
       int locales = 0;
       int visitantes = 0;
+
+      String [] partido = new String[4];
+
       Scanner entrada = new Scanner(new File(fichero), "UTF-8"); 
       while(entrada.hasNextLine()) { 
          String linea = entrada.nextLine() + " ";
-         String [] partido = new String[4];
          int inicio = 0;
          int fin = 0;
-         for (int y = 0; y < 4; y++){
+
+         //bucle para dividir la linea en un array de 4 strings
+         for (int y = 0; fin < linea.length(); y++){
             while (linea.charAt(fin) != ' '){
                fin += 1;
             }
@@ -27,14 +32,19 @@ public class Partidos {
             inicio = fin + 1;
             fin = inicio;
          }
+
+         //bucle para buscar el local y el visitante
          for (int x = 0; x < vector.length; x++){
-            if(vector[x] == partido[0]){
+            if(vector[x].equals(partido[0])){
                locales = x;
             }
-            else if(vector[x] == partido[2]){
+         }
+         for (int x = 0; x < vector.length; x++){
+            if(vector[x].equals(partido[2])){
                visitantes = x;
             }
          }
+
          if (Integer.parseInt(partido[1]) > Integer.parseInt(partido[3])){
             matriz[locales][visitantes] = '1';
          }
@@ -66,6 +76,8 @@ public class Partidos {
    }
 
    public static String obtenerLíder(String[] vector, char[][] matriz){
+
+      //vector para ordenar las puntuaciones en casa
       int[] puntuaciones = new int[vector.length];
       for(int i=0; i<matriz.length; i++){
          int puntos = 0;
@@ -76,13 +88,32 @@ public class Partidos {
             else if (matriz[i][j] == 'X'){
                puntos += 1;
             }
-            puntuaciones[j] = puntos;
          }
+         puntuaciones[i] = puntos;
       }
+
+      //ordenar las puntuaciones fuera de casa
+      int indice = 0;
+      for(int i=0; i<matriz.length; i++){
+         int puntos = 0;
+         for(int j=0; j<matriz[i].length; j++){
+            if (matriz[j][indice] == '2'){
+               puntos += 3;
+            }
+            else if (matriz[j][indice] == 'X'){
+               puntos += 1;
+            }
+         }
+         puntuaciones[indice] += puntos;
+         indice += 1;
+      }
+
       int maximo = 0;
+      int maxvalor = 0;
       for(int x=0; x<puntuaciones.length; x++){
-         if (puntuaciones[x] > maximo){
-            maximo = puntuaciones[x];
+         if (puntuaciones[x] > maxvalor){
+            maxvalor = puntuaciones[x];
+            maximo = x;
          }
       }
       return vector[maximo];
@@ -107,8 +138,8 @@ public class Partidos {
                            "Sevilla_FC", "Valencia_CF", "Villarreal_CF"};
 
       imprimirMatriz(crearMatrizResultados(nombresEquipos, "liga21-22-jornada25-sin-aplazados.txt"));
-      //System.out.println(sinDerrotasEnCasa(crearMatrizResultados(nombresEquipos, "liga21-22-jornada25-sin-aplazados.txt")));
-      //System.out.println(obtenerLíder(nombresEquipos, crearMatrizResultados(nombresEquipos, "liga21-22-jornada25-sin-aplazados.txt")));
+      System.out.println(sinDerrotasEnCasa(crearMatrizResultados(nombresEquipos, "liga21-22-jornada25-sin-aplazados.txt")));
+      System.out.println(obtenerLíder(nombresEquipos, crearMatrizResultados(nombresEquipos, "liga21-22-jornada25-sin-aplazados.txt")));
       
    }
 }
