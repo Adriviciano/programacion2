@@ -1,0 +1,11 @@
+10
+ 1  1   2 Restaurante Hermanos Zafón
+ 3 10   2 Asador Pizzería Marisol
+20  3   5 Restaurante Antoxo
+25  5   3 Tu Sushi
+22 19   4 La Cuina de Fernando
+ 2 15   1 The Fitzgerald Burger Company
+15 15   5 Restaurante Luisy
+22 19   3 Restaurante Corpore Sano
+20 18   3 Restaurante Marade
+10 22   2 Restaurante Pairal
