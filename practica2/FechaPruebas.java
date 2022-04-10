@@ -1,7 +1,6 @@
 package practica2;
 
 public class FechaPruebas {
-/*
 	public static void main(String[] args) {
 
 		System.out.println("Ejemplos de uso de fechas");
@@ -72,7 +71,5 @@ public class FechaPruebas {
 		System.out.println("El año termina el día " + finAño.getDía() + " del mes " + finAño.getMes() + ".");
 		System.out.println("El año comienza el día " + añoNuevo.getDía() + " del mes " + añoNuevo.getMes() + ".");
 		System.out.println();
-
 	}
-*/
 }
